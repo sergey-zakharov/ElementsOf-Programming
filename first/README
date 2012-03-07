@@ -1,0 +1,9 @@
+Using this program you can enter your own function to MyFunction.h source. 
+
+Compile:
+g++ main.cpp MyFunction.h Executer.h tester.h -o funcProg
+
+Executing:
+./funcProg
+
+Serge Zakh.
