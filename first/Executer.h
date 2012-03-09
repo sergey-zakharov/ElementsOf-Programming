@@ -1,34 +1,41 @@
-#ifndef VECTOR
-#define VECTOR
-	#include <vector>
-	#include <iostream>
-#endif
+#include <vector>
+#include <iostream>
+
 
 #include "MyFunction.h"
 
+template <typename NUMBERIC>
 class Executer{
 private:
 	int _num;		//module
-	MyFunction* myFunc; 
+	MyFunction myFunc; 
+
 public:
+	Executer(){
+		_num = 100500;
+	}	
 	Executer(int number){
 		_num=number;
 	}
-	int executeFunc(int first);
-	std::vector<int> run(int arg);
+	NUMBERIC executeFunc(NUMBERIC first);
+	std::vector<int> run(NUMBERIC arg);
+	void changeN(int n){
+		_num = n;
+	}
 
 };
 
-
-int Executer::executeFunc(int first){
+template <typename NUMBERIC>
+NUMBERIC Executer<NUMBERIC>::executeFunc(NUMBERIC first){
 	
-	return myFunc->get(first, _num);
+	return myFunc.run(first, _num);//TODO
 	
 }
 
-std::vector<int> Executer::run(int arg){// дубово
-	int first=arg;
-	int second=arg;
+template <typename NUMBERIC>
+std::vector<int> Executer<NUMBERIC>::run(NUMBERIC arg){// дубово
+	NUMBERIC first=arg;
+	NUMBERIC second=arg;
 
 	std::vector<int> results;
 
