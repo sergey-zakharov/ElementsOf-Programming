@@ -4,6 +4,11 @@ Compile:
 g++ main.cpp MyFunction.h Executer.h tester.h -o funcProg
 
 Executing:
-./funcProg
+./funcProg first_arg <second arg> n
+
+Usage:
+Enter 1 argument and mod to work with int numbers.
+Enter 2 arguments and mod to work with pair of int.
+
 
 Serge Zakh.
