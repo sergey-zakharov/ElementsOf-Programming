@@ -1,10 +1,7 @@
-#pragma once
-
-#ifndef VECTOR_H
-	#define VECTOR_H
-	#include "vector"
-	#include "iostream"
-#endif
+#ifndef TESTER
+#define TESTER
+#include <vector>
+#include <iostream>
 #include <map>
 #include "MyFunction.h"
 
@@ -54,9 +51,10 @@ std::vector<int> Tester<T>::simple_execute(T arg){
 		++inc;
 		stepVect[current] = inc;	//отмечает, на каком шаге посещена вершина с числом current
 		_visited[current] = true;
-		current = myFunc.run(current, _num);
+		current = myFunc(current, _num);
 	}
 	simp_res_vect[0] = inc - stepVect[current]+1;	//loop length
 	simp_res_vect[1] = stepVect[current]-1;			//tail length
 	return simp_res_vect;
 }
+#endif

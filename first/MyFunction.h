@@ -1,4 +1,5 @@
-#pragma once
+#ifndef MY_FUNCTION
+#define MY_FUNCTION
 #include <cstdlib>
 #include <utility>
 #include <iostream>
@@ -8,12 +9,12 @@ public:
 	MyFunction(){
 	
 	}
-	int run(int arg, int num){
+	int operator()(int arg, int num){
 		//std::cout << arg;
 		return (37*arg + arg*arg + 7)%num;// функктор для интов. Ожидается для пары, дальше забить.
 
 	}
-	std::pair<int, int> run(std::pair<int,int> p, int num){
+	std::pair<int, int> operator ()(std::pair<int,int> p, int num){
 		if( !(abs(p.first) < 100) )
 			p.first = p.first%100;
 		if( !(abs(p.second) < 100) )
@@ -23,4 +24,4 @@ public:
 		
 	}
 };
-
+#endif

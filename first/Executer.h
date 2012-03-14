@@ -1,3 +1,6 @@
+#ifndef EXECUTER
+#define EXECUTER
+
 #include <vector>
 #include <iostream>
 
@@ -28,12 +31,12 @@ public:
 template <typename NUMBERIC>
 NUMBERIC Executer<NUMBERIC>::executeFunc(NUMBERIC first){
 	
-	return myFunc.run(first, _num);//TODO
+	return myFunc(first, _num);//TODO
 	
 }
 
 template <typename NUMBERIC>
-std::vector<int> Executer<NUMBERIC>::run(NUMBERIC arg){// дубово
+std::vector<int> Executer<NUMBERIC>::run(NUMBERIC arg){
 	NUMBERIC first=arg;
 	NUMBERIC second=arg;
 
@@ -105,4 +108,4 @@ std::vector<int> Executer<NUMBERIC>::run(NUMBERIC arg){// дубово
 	return results;
 	
 }
-
+#endif

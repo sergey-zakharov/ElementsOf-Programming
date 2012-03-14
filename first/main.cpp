@@ -11,6 +11,8 @@ int main (int argc, char* argv[]){
 	if (argc == 4)
 	{
 		int num = atoi(argv[3]);
+		//std::cout << num;
+
 		Wrapper<std::pair<int, int> > helper(0, num);
 		std::pair<int, int> p;
 
@@ -28,7 +30,7 @@ int main (int argc, char* argv[]){
 		helper.run(argum);
 	}
 	else {
-		std::cerr << "not enought arguments" << std::endl;
+		std::cerr << "not enough arguments" << std::endl;
 		exit(1);
 	}
 	int x, n;
