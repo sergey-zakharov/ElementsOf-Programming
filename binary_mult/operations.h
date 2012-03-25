@@ -28,11 +28,11 @@ template <class T>
 
 template <class T>
 //      requires(T = int, double)
-class mulOp{
+class multOp{
        // T _base;
 
         public:
-        mulOp(){
+        multOp(){
 
         }
         T operator() (T a, int n)
