@@ -1,7 +1,7 @@
 Using this program you can enter your own function to MyFunction.h source. 
 
 Compile:
-g++ main.cpp MyFunction.h Executer.h tester.h -o funcProg
+g++ main.cpp MyFunction.h PrecycleLengthFinder.h PrecycleLengthFinderWrapper.h Tester.h -o funcProg
 
 Executing:
 ./funcProg first_arg <second arg> n
