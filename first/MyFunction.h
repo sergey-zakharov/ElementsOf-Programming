@@ -6,21 +6,26 @@
 class MyFunction{ 
 	
 public:
-	MyFunction(){
+	int num_;
+	MyFunction(int num) : num_(num) {
 	
 	}
-	int operator()(int arg, int num){
-		return (37*arg + arg*arg + 7)%num;
+	int operator()(int arg){
+		return (37*arg + arg*arg + 7)%num_;
 
 	}
-	std::pair<int, int> operator ()(std::pair<int,int> p, int num){
-		if( !(abs(p.first) < 100) )
-			p.first = p.first%100;
-		if( !(abs(p.second) < 100) )
-			p.second = p.second%100;
-		int tmp = p.first*100+p.second;
-		return std::pair<int, int>(tmp, num);	
+	std::pair<int, int> operator ()(const std::pair<int,int>& p){
+		int first = p.first;
+		int second = p.second;
+
+		if( !(abs(first) < 100) )
+			first = first%100;
+		if( !(abs(second) < 100) )
+			second = second%100;
+		int tmp = first*100+second;
+		return std::pair<int, int>(tmp, num_);	
 		
 	}
 };
+
 #endif

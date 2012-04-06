@@ -10,48 +10,32 @@
 template <typename NUMERIC>
 class PrecycleLengthFinder{
 private:
-	int _num;		
 	MyFunction myFunc; 
-	NUMERIC findIncycleElem(NUMERIC arg_first);
-	int countLoopElem(NUMERIC second);
+	NUMERIC findIncycleElements(NUMERIC arg_first);
+	int countLoopElements(NUMERIC second);
 	int tailLenCount(NUMERIC first, int looplen);
 
 public:
-	PrecycleLengthFinder(int number = 100500){
-		_num=number;
-	}
+	PrecycleLengthFinder(const MyFunction& myFunc_) : myFunc(myFunc_) { }
 	NUMERIC executeFunc(NUMERIC first);
 	std::vector<int> run(NUMERIC arg);
-	void changeN(int n){
-		_num = n;
-	}
 
 };
 
 template <typename NUMERIC>
-NUMERIC PrecycleLengthFinder<NUMERIC>::executeFunc(NUMERIC first){
-	
-	return myFunc(first, _num);
-	
+NUMERIC PrecycleLengthFinder<NUMERIC>::executeFunc(NUMERIC object){
+	return myFunc(object);
 }
 
 template <typename NUMERIC>
-NUMERIC PrecycleLengthFinder<NUMERIC>::findIncycleElem(NUMERIC argFirst)
+NUMERIC PrecycleLengthFinder<NUMERIC>::findIncycleElements(NUMERIC argFirst)
 {
-	int numElem = 1;
-	bool elementsEqual = true;
 	NUMERIC first = argFirst;
 	NUMERIC second = argFirst;
-	
-	while(elementsEqual){
-		
+	do {
 		first = executeFunc(first);
 		second = executeFunc(executeFunc(second));
-		
-		if(first==second){
-			elementsEqual = false;
-		}
-	}
+	} while (!(first == second));
 	return  second;
 }
 
@@ -59,14 +43,12 @@ NUMERIC PrecycleLengthFinder<NUMERIC>::findIncycleElem(NUMERIC argFirst)
 
 
 template <typename NUMERIC>
-int PrecycleLengthFinder<NUMERIC>::countLoopElem(NUMERIC incycleElem)
+int PrecycleLengthFinder<NUMERIC>::countLoopElements(NUMERIC incycleElem)
 {
 	bool elementsEqual = true;
 	int  cycleLength = 1;
 	NUMERIC second = incycleElem;
-
 	while(elementsEqual){
-		
 		incycleElem = executeFunc(incycleElem);
 		if(incycleElem==second){
 			elementsEqual = false;
@@ -110,9 +92,9 @@ std::vector<int> PrecycleLengthFinder<NUMERIC>::run(NUMERIC arg){
 
 	std::vector<int> results;
 
-	NUMERIC res_second = findIncycleElem(arg);
+	NUMERIC res_second = findIncycleElements(arg);
 	
-	int cycleLength = countLoopElem(res_second);
+	int cycleLength = countLoopElements(res_second);
 	results.push_back(cycleLength);
 	
 	int tailLen = tailLenCount(arg, cycleLength);

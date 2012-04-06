@@ -6,17 +6,16 @@
 template <typename T>
 class PrecycleLengthFinderWrapper{
 	PrecycleLengthFinder<T> _exec;
-	int _num;
+	MyFunction _myFunc;
+	
 	public:
-	PrecycleLengthFinderWrapper(int arg, int n){
-		_num = n;
-		_exec.changeN(n);
+	PrecycleLengthFinderWrapper(const MyFunction& myFunc) : _exec(myFunc), _myFunc(myFunc){
 	}
 
 	void run(T arg){
 	
 		T x = arg;
-        	Tester<T> myTester(x, _num);
+        	Tester<T> myTester(x, _myFunc);
 
 	        std::vector<int> resVect = _exec.run(x);
         	std::cout << "Loop lenght: " << resVect[0] << std::endl;

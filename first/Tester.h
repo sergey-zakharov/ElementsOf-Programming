@@ -13,13 +13,12 @@ template<typename T>
 class Tester{
 	std::map<T,bool> _visited;
 	T _arg;
-	int _num;
-	MyFunction myFunc;
+	//int _num;
+	MyFunction _myFunc;
 	std::vector<int> simple_execute(T arg);
 public:
-	Tester(T arg, int num){
+	Tester(T arg, const MyFunction& myFunc) : _myFunc(myFunc) {
 		_arg = arg;
-		_num = num;
 	}
 	bool run(std::vector<int> &resVect);
 
@@ -50,7 +49,7 @@ std::vector<int> Tester<T>::simple_execute(T arg){
 		++inc;
 		stepVect[current] = inc;			//отмечает, на каком шаге посещена вершина с числом current
 		_visited[current] = true;
-		current = myFunc(current, _num);
+		current = _myFunc(current);
 	}
 	simp_res_vect[0] = inc - stepVect[current]+1;		//loop length
 	simp_res_vect[1] = stepVect[current]-1;			//tail length
