@@ -4,9 +4,9 @@
 #include <utility>
 #include <iostream>
 class MyFunction{ 
-	
-public:
+private:
 	int num_;
+public:
 	MyFunction(int num) : num_(num) {
 	
 	}

@@ -8,6 +8,8 @@ void printError(const std::string& name){
 	std::cout << name << " x0, n  or x0, x1, n" << std::endl;
 }
 
+
+
 int main (int argc, char* argv[]){
 
 	if (argc == 4)
