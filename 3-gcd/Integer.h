@@ -34,8 +34,21 @@ class Integer{
 		return second;
 	}	
 
+	bool operator > (Integer second){
+		return this->value > second.getValue();
+	}
 
+	bool operator > (int second){
+		return this->value > second;
+	}
 
+	bool operator < (Integer second){
+		return this->value < second.getValue();
+	}
+
+	bool operator < (int second){
+		return this->value < second;
+	}
 
 	
 	Integer operator + (Integer second){
@@ -80,7 +93,7 @@ class Integer{
 		return this->value != second.getValue();
 	}
 	
-	bool operator == (Integer second){
+	bool operator == (Integer second) const {
 		return this->value == second.getValue();
 	}
 	

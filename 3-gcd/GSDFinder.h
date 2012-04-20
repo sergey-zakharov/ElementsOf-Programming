@@ -1,14 +1,17 @@
+#ifndef GCD_FINDER_H_
+#define GCD_FINDER_H_
+
 template <typename T>
 class GSDFinder{
 	
 public:
 	
-	T find(T first, T second);
+	T find(T first, T second) const;
 
 };
 
 template <typename T>
-T GSDFinder<T>::find(T first, T second){
+T GSDFinder<T>::find(T first, T second) const{
 	T temp;
 	while (second != second(0))		// !=
 	{
@@ -18,5 +21,7 @@ T GSDFinder<T>::find(T first, T second){
 	}
 	return first;
 }
+
+#endif /* GCD_FINDER_H_ */
 
 
