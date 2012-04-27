@@ -3,12 +3,22 @@
 class Integer{
         int value;
   public:
+
         Integer(int num)
         {
         	value = num;
         }
         
-        int operator ()(int val)
+        Integer(const Integer& arg){
+                	value = 0;
+        }
+
+        Integer operator ()(){
+        	Integer res(0);
+        	return res;
+        }
+
+        Integer operator ()(int val)
         {
         	return val;
         }

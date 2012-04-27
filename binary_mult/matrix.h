@@ -16,6 +16,7 @@ class Matrix{//квадратная матрица
 	int _matrSize;
 public:
 	std::vector <std::vector<T> > _matrixContent;
+
 	Matrix(std::vector<std::vector<T> >& content){
 		if (content[0].size() != content.size())
 		{
@@ -31,7 +32,13 @@ public:
 		_matrixContent = content; // копируем содержимое	
 
 	}
+
+	Matrix(const Matrix<T>& argMatr){
+		_matrixContent = argMatr._matrixContent;
+		_matrSize = argMatr._matrSize;
+	}
 	int getSize();
+	Matrix operator()();
 	Matrix operator()(int param);
 	Matrix operator * (Matrix b);
 	Matrix operator * (int n);
@@ -58,12 +65,27 @@ Matrix<T> Matrix<T>::operator()(int param){
 		for(int j=0; j< _matrSize; ++j)
 		{
 			trivialMatr[i][j] = 0;
-				
+
 		}
 		if (param == 1) trivialMatr[i][i] = 1;
 	}
+
 	return trivialMatr;
 }
+template <typename T>
+Matrix<T> Matrix<T>::operator()(){
+	std::vector< std::vector<int> > trivialMatr (_matrSize, std::vector<int>(_matrSize));
+		for (int i=0; i < _matrSize; ++i){
+			for(int j=0; j< _matrSize; ++j)
+			{
+				trivialMatr[i][j] = 0;
+
+			}
+			trivialMatr[i][i] = 1;
+		}
+	return trivialMatr;
+}
+
 
 template <typename T>
 Matrix<T> Matrix<T>::operator*(Matrix<T> b){
@@ -138,6 +160,8 @@ bool Matrix<T>::operator==(Matrix<T> secondMatr){
 	}
 	return true;
 }
+
+
 
 template <typename T>
 int Matrix<T>::getSize(){

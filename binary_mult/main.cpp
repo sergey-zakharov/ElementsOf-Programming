@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream> 
 #include <vector>
+#include <cstdio>
 #include "operations.h"
 #include "matrix.h"
 #include "Integer.h"
@@ -14,14 +15,18 @@ T pow (T a, int n, BinOp<T> f){
 
 
 
-int main(){
+int main(int argc, char** argv){
+
+	if(argc != 2){
+		std::cerr << "1 argument expected: times to loop tester" << std::endl;
+		return 1;
+	}
 
 	int number;
 	
 	std::fstream infile ("input", std::fstream::in);
-	//std::fstream outfile ("output", std::fstream::out);
 	
-
+	srand(time(NULL));
 	int n, m;
 
 	infile >> n >> m;
@@ -36,27 +41,33 @@ int main(){
 	
 	Matrix<> matrix(first_matr);
 
-	Matrix<> multRes = pow(matrix, 5, multOp<Matrix<> >());
-	Matrix<> powRes = pow(matrix, 5, powOp<Matrix<> >());
+	int timesToLoop = atoi(argv[1]);
+	for(int i=0; i<timesToLoop; ++i){
+
+		int multOn = rand()%100;
+		int powOn = rand()%10;
 	
-	Tester<Matrix<> > tester;
-	std::cout << multRes;
-	
-	std::cout << "Is it right? ";
-	if (tester.run("mult", matrix, 5, multRes) == 1){
-		std::cout << "yes" << std::endl;
+		Matrix<> multRes = pow(matrix, multOn, multOp<Matrix<> >());
+		Matrix<> powRes = pow(matrix, powOn, powOp<Matrix<> >());
+
+		Tester<Matrix<> > tester;
+		std::cout << multRes;
+
+		std::cout << "Is it right? ";
+		if (tester.run("mult", matrix, multOn, multRes) == 1){
+			std::cout << "yes" << std::endl;
+		}
+		else std::cout << "no" << std::endl;
+
+		std::cout << std::endl;
+
+		std::cout << powRes;
+		std::cout << "Is it right? ";
+		if (tester.run("pow", matrix, powOn, powRes) == 1){
+			std::cout << "yes" << std::endl;
+		}
+		else std::cout << "no" << std::endl;
 	}
-	else std::cout << "no" << std::endl;
-	
-	std::cout << std::endl;
-	
-	std::cout << powRes;
-	std::cout << "Is it right? ";
-	if (tester.run("pow", matrix, 5, powRes) == 1){
-		std::cout << "yes" << std::endl;
-	}
-	else std::cout << "no" << std::endl;
-	
 }
 
 
