@@ -13,7 +13,7 @@
 
 template <typename T=int>
 class Matrix{//квадратная матрица
-	int _matrSize;
+	size_t _matrSize;
 public:
 	std::vector <std::vector<T> > _matrixContent;
 
@@ -37,15 +37,15 @@ public:
 		_matrixContent = argMatr._matrixContent;
 		_matrSize = argMatr._matrSize;
 	}
-	int getSize();
-	Matrix operator()();
-	Matrix operator()(int param);
-	Matrix operator * (Matrix b);
-	Matrix operator * (int n);
-	Matrix operator + (Matrix summand);
-	bool operator == (Matrix secondMatr);	
+	int getSize() const;
+	Matrix operator()() const ;
+	Matrix operator()(int param) const ;
+	Matrix operator * (Matrix b) const ;
+	Matrix operator * (int n) const ;
+	Matrix operator + (Matrix summand) const ;
+	bool operator == (Matrix secondMatr) const ;
 	
-	friend std::ostream& operator << (std::ostream& out, const Matrix<T>& matr /*из--за того, что не держится временный объект*/){
+	friend std::ostream& operator << (std::ostream& out, const Matrix<T>& matr){
 		for(int col=0; col < matr._matrixContent.size(); ++col)
 		{
 			for(int row=0; row < matr._matrixContent[0].size(); ++row){
@@ -59,7 +59,7 @@ public:
 };
 
 template <typename T>
-Matrix<T> Matrix<T>::operator()(int param){
+Matrix<T> Matrix<T>::operator()(int param) const {
 	std::vector< std::vector<int> > trivialMatr (_matrSize, std::vector<int>(_matrSize));
 	for (int i=0; i < _matrSize; ++i){
 		for(int j=0; j< _matrSize; ++j)
@@ -73,7 +73,7 @@ Matrix<T> Matrix<T>::operator()(int param){
 	return trivialMatr;
 }
 template <typename T>
-Matrix<T> Matrix<T>::operator()(){
+Matrix<T> Matrix<T>::operator()() const{
 	std::vector< std::vector<int> > trivialMatr (_matrSize, std::vector<int>(_matrSize));
 		for (int i=0; i < _matrSize; ++i){
 			for(int j=0; j< _matrSize; ++j)
@@ -88,16 +88,16 @@ Matrix<T> Matrix<T>::operator()(){
 
 
 template <typename T>
-Matrix<T> Matrix<T>::operator*(Matrix<T> b){
+Matrix<T> Matrix<T>::operator*(Matrix<T> b) const {
 	std::vector<std::vector<T> > resMatr(this->_matrixContent.size(), std::vector<T>(b._matrixContent.size() ) );	// column of rows
 
 	//std::cout << 3 << std::endl;
 	if (this->_matrixContent[0].size() == b._matrixContent.size()){
-           for(int i = 0; i<this->_matrixContent.size(); ++i){              // height of A
+           for(size_t i = 0; i<this->_matrixContent.size(); ++i){              // height of A
 
-               for(int j=0; j<b._matrixContent[i].size(); ++j)      // width of B
+               for(size_t j=0; j<b._matrixContent[i].size(); ++j)      // width of B
                {
-                  for(int k = 0; k < this->_matrixContent[i].size(); ++k)                   // width of A (height of B)
+                  for(size_t k = 0; k < this->_matrixContent[i].size(); ++k)                   // width of A (height of B)
        	          {
                         resMatr[i][j]+=this->_matrixContent[i][k]*b._matrixContent[k][j];
                   }
@@ -113,7 +113,7 @@ Matrix<T> Matrix<T>::operator*(Matrix<T> b){
 }
 
 template <typename T>
-Matrix<T> Matrix<T>::operator*(int n){
+Matrix<T> Matrix<T>::operator*(int n) const{
 	std::vector<std::vector<T> > resMatr(this->_matrixContent.size(), std::vector<T>(this->_matrixContent.size() ) );	// column of rows
 
 	//if (this._matrixContent[0].length == .length){
@@ -127,7 +127,7 @@ Matrix<T> Matrix<T>::operator*(int n){
 }
 
 template <typename T>	
-Matrix<T> Matrix<T>::operator+(Matrix<T> summand){
+Matrix<T> Matrix<T>::operator+(Matrix<T> summand) const{
 	if (this->getSize() != summand.getSize()){
 		std::cerr << "not acceptable size of matrix";
 		exit(1);
@@ -145,7 +145,7 @@ Matrix<T> Matrix<T>::operator+(Matrix<T> summand){
 
 	
 template <typename T>	
-bool Matrix<T>::operator==(Matrix<T> secondMatr){
+bool Matrix<T>::operator==(Matrix<T> secondMatr) const{
 	bool areEqual = true;
 	if(this->getSize() != secondMatr.getSize())
 		return false;
@@ -164,7 +164,7 @@ bool Matrix<T>::operator==(Matrix<T> secondMatr){
 
 
 template <typename T>
-int Matrix<T>::getSize(){
+int Matrix<T>::getSize() const{
 	return _matrSize;
 }
 

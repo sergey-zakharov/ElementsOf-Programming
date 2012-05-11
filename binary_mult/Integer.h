@@ -13,12 +13,12 @@ class Integer{
                 	value = 0;
         }
 
-        Integer operator ()(){
+        Integer operator ()() const {
         	Integer res(0);
         	return res;
         }
 
-        Integer operator ()(int val)
+        Integer operator ()(int val) const
         {
         	return val;
         }
@@ -28,42 +28,42 @@ class Integer{
 		out << myInt.value;
 		return out;
 	}
-	int getValue()
+	int getValue() const
 	{
 		return value;
 	}
 	
 	
-	Integer operator + (Integer second){
+	Integer operator + (Integer second) const {
 		return Integer(this->value + second.getValue());
 	}
 	
-	Integer operator * (Integer second){
+	Integer operator * (Integer second) const {
 		return Integer(this->value*second.getValue());
 	}
 
-	Integer operator - (Integer second){
+	Integer operator - (Integer second) const {
 		return Integer(this->value-second.getValue());
 	}
 
-	Integer operator / (Integer second){
+	Integer operator / (Integer second) const {
 		return Integer(this->value/second.getValue());
 	}
 	
-	Integer operator + (int second){
+	Integer operator + (int second) const {
 		return Integer(this->value+second);
 	}
 	
 	
-	Integer operator * (int second){
+	Integer operator * (int second) const {
 		return Integer(this->value*second);
 	}
 
-	Integer operator - (int second){
+	Integer operator - (int second) const {
 		return Integer(this->value-second);
 	}
 
-	Integer operator / (int second){
+	Integer operator / (int second) const {
 		return Integer(this->value/second);
 	}
 	

@@ -6,13 +6,17 @@
 #include "matrix.h"
 #include "Integer.h"
 #include "Tester.h"
+/*#include "MatrixMultOp.h"*/
 
 
-template<typename T, template <class> class BinOp>
+template<class T, template <class> class BinOp>
 T pow (T a, int n, BinOp<T> f){
 	return f(a,n);
 }
-
+/*template<class T, template <class, class TE> class BinOp>
+T pow (T a, int n, BinOp<T, TE> f){
+	return f(a,n);
+}*///хотелось бы за TE сделать MatrixMultOp
 
 
 int main(int argc, char** argv){
@@ -21,8 +25,6 @@ int main(int argc, char** argv){
 		std::cerr << "1 argument expected: times to loop tester" << std::endl;
 		return 1;
 	}
-
-	int number;
 	
 	std::fstream infile ("input", std::fstream::in);
 	
@@ -47,8 +49,8 @@ int main(int argc, char** argv){
 		int multOn = rand()%100;
 		int powOn = rand()%10;
 	
-		Matrix<> multRes = pow(matrix, multOn, multOp<Matrix<> >());
-		Matrix<> powRes = pow(matrix, powOn, powOp<Matrix<> >());
+		Matrix<> multRes = pow(matrix, multOn, MultOp<Matrix<> >());
+		Matrix<> powRes = pow(matrix, powOn, PowOp< Matrix<>/*, MatrixMultOp<> */ >());
 
 		Tester<Matrix<> > tester;
 		std::cout << multRes;
