@@ -4,20 +4,11 @@
  *  Created on: Apr 20, 2012
  *      Author: sergeyzakharov
  */
-
-
-#ifndef GCD_FINDER_H_
-#define GCD_FINDER_H_
-
 #include "GSDFinder.h"
 
-#endif /* GCD_FINDER_H_ */
 
 #ifndef FRACTION_H_
 #define FRACTION_H_
-
-
-
 
 class Fraction{
 private:
@@ -37,10 +28,10 @@ public:
 		this->denominator = frac.getDenominator();
 	}
 
-	Fraction& operator + (const Fraction& argFrac) const;
-	Fraction& operator - (const Fraction& argFrac) const;
-	Fraction& operator * (const Fraction& argFrac) const;
-	Fraction& operator / (const Fraction& argFrac) const;
+	Fraction operator + (const Fraction& argFrac) const;
+	Fraction operator - (const Fraction& argFrac) const;
+	Fraction operator * (const Fraction& argFrac) const;
+	Fraction operator / (const Fraction& argFrac) const;
 	friend std::ostream& operator << (std::ostream& out, const Fraction& toOut){
 		out << toOut.numerator << "/" << toOut.denominator;
 		return out;
@@ -54,7 +45,7 @@ public:
 
 
 
-Fraction& Fraction::operator + (const Fraction& argFrac) const{
+Fraction Fraction::operator + (const Fraction& argFrac) const{
 	Fraction arg = argFrac;
 	Fraction thisArg = *this;
 	Fraction res;
@@ -86,7 +77,7 @@ void Fraction::normalize(){
 	}
 }
 
-Fraction& Fraction::operator - (const Fraction& argFrac) const{
+Fraction Fraction::operator - (const Fraction& argFrac) const{
 	Fraction arg = argFrac;
 	Fraction thisArg = *this;
 
@@ -110,17 +101,18 @@ Fraction& Fraction::operator - (const Fraction& argFrac) const{
 	return res;
 }
 
-Fraction& Fraction::operator * (const Fraction& argFrac) const{
+Fraction Fraction::operator * (const Fraction& argFrac) const{
 	Fraction res;
 	Fraction thisArg = *this;
 	res.numerator = thisArg.numerator*argFrac.numerator;
 	res.denominator = thisArg.denominator*argFrac.denominator;
-
+	//std::cout << "res = "<< res << std:: endl;
 	res.normalize();
+	//std::cout << "res = "<< res << std:: endl;
 	return res;
 }
 
-Fraction& Fraction::operator / (const Fraction& argFrac) const{
+Fraction Fraction::operator / (const Fraction& argFrac) const{
 	Fraction res;
 	Fraction thisArg = *this;
 	res.denominator = argFrac.numerator;

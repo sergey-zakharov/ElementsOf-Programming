@@ -34,62 +34,62 @@ class Integer{
 		return second;
 	}	
 
-	bool operator > (Integer second){
+	bool operator > (Integer second) const{
 		return this->value > second.getValue();
 	}
 
-	bool operator > (int second){
+	bool operator > (int second) const{
 		return this->value > second;
 	}
 
-	bool operator < (Integer second){
+	bool operator < (Integer second) const{
 		return this->value < second.getValue();
 	}
 
-	bool operator < (int second){
+	bool operator < (int second) const{
 		return this->value < second;
 	}
 
 	
-	Integer operator + (Integer second){
+	Integer operator + (Integer second) const{
 		return Integer(this->value + second.getValue());
 	}
 	
-	Integer operator * (Integer second){
+	Integer operator * (Integer second) const{
 		return Integer(this->value*second.getValue());
 	}
 
-	Integer operator - (Integer second){
+	Integer operator - (Integer second) const{
 		return Integer(this->value-second.getValue());
 	}
 
-	Integer operator / (Integer second){
+	Integer operator / (Integer second) const{
 		return Integer(this->value/second.getValue());
 	}
 	
-	Integer operator + (int second){
+	Integer operator + (int second) const{
 		return Integer(this->value+second);
 	}
 	
 	
-	Integer operator * (int second){
+	Integer operator * (int second) const{
 		return Integer(this->value*second);
 	}
 
-	Integer operator - (int second){
+	Integer operator - (int second) const{
 		return Integer(this->value-second);
 	}
 
-	Integer operator / (int second){
+	Integer operator / (int second) const{
 		return Integer(this->value/second);
 	}
 	
 	
-	Integer operator % (Integer second){
+	Integer operator % (Integer second) const{
 		return Integer(this->value % second.getValue());
 	}
 	
-	bool operator != (Integer second){
+	bool operator != (Integer second) const{
 		return this->value != second.getValue();
 	}
 	
